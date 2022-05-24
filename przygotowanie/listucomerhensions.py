@@ -21,7 +21,6 @@ def rom_to_ar(number):
     for i in number:
         n += romanian_numerals[i]
     return n
-a=100
 print(rom_to_ar('IX'))
 
 def ar_to_rom(num1):
