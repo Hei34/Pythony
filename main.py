@@ -61,3 +61,54 @@ def czypalindrom(slowo):
     else:
         return False
 print(czypalindrom(slowko))
+from typing import Any
+
+class Node:
+    value: Any
+    next: 'Node'
+    def __init__(self, v1):
+        self.value = v1
+        self.next = None
+    def __str__(self):
+        return '[' + str(self.value)+ ' -> ' + str(self.next.value) + ']'
+class LinkedList:
+    head: Node
+    tail: Node
+    def __init__(self):
+        self.head = None
+
+    def push(self, v1):
+        nnode = Node(v1)
+        nnode.next = self.head
+        self.head = nnode
+    def append(self,v1):
+        temp = self.head
+        while temp.next != None:
+            temp = temp.next
+        temp.next = Node(v1)
+        self.tail = temp
+    def __str__(self):
+        result = ""
+        node = self.head
+        if node != None:
+            result += str(node.value)
+            node = node.next
+            while node:
+                result += " -> " + str(node.value)
+                node = node.next
+        return result
+
+lista1 = LinkedList()
+
+lista1.push(5)
+lista1.push(2)
+lista1.push(6)
+lista1.append(3)
+lista1.append(4)
+lista1.push(1)
+
+print(lista1)
+print(lista1.head)
+print(lista1.head.next)
+print(lista1.tail)
+
