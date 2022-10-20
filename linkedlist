@@ -1,0 +1,90 @@
+from typing import Any
+
+class Node:
+    value: Any
+    next: 'Node'
+    def __init__(self, v1):
+        self.value = v1
+        self.next = None
+    def __str__(self):
+        return '[' + str(self.value)+ ' -> ' + str(self.next.value) + ']'
+class LinkedList:
+    head: Node
+    tail: Node
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.len = 0
+    def push(self, v1):
+        if self.head == None:
+            self.tail = self.head = Node(v1)
+            self.len += 1
+        else:
+            nnode = Node(v1)
+            nnode.next = self.head
+            self.head = nnode
+            self.len += 1
+    def node(self, x):
+        temp = self.head
+        i = 0
+        while i < x:
+            temp = temp.next
+            i += 1
+        return temp
+    def insert(self, v1, node):
+        nnode = Node(v1)
+        nnode.next = node.next
+        node.next = nnode
+    def pop(self):
+        self.head = self.head.next
+        return self.head
+    def append(self,v1):
+        self.len += 1
+        temp = self.head
+        while temp.next != None:
+            temp = temp.next
+        temp.next = Node(v1)
+        self.tail = temp.next
+    def __str__(self):
+        result = ""
+        node = self.head
+        if node != None:
+            result += str(node.value)
+            node = node.next
+            while node:
+                result += " -> " + str(node.value)
+                node = node.next
+        return result
+
+
+ll = LinkedList()
+print(ll); print(ll.tail)
+assert ll.head == None and ll.tail == None
+ll.push(1)
+print(ll); print(ll.tail.value)
+ll.push(0);
+print( str(ll) + "; ogona_wartosc=" + str(ll.tail.value))
+assert str(ll) == '0 -> 1'
+assert ll.tail.value == 1
+
+
+ll.append(9)
+ll.append(10)
+print( str(ll) + "; ogona_wartosc=" + str(ll.tail.value))
+assert str(ll) == '0 -> 1 -> 9 -> 10';
+print(ll.tail.value)
+assert ll.tail.value == 10
+
+ltmp = LinkedList()
+ltmp.push(11)
+print( str(ltmp) + "; ogona_wartosc=" + str(ltmp.tail.value))
+ltmp = None
+print("")
+
+middle_node = ll.node(x=1)
+print(middle_node.value)
+assert (middle_node.value == 1)
+ll.insert(5, node= middle_node)
+print( str(ll) + "; ogona_wartosc=" + str(ll.tail.value))
+assert str(ll) == '0 -> 1 -> 5 -> 9 -> 10'
+
