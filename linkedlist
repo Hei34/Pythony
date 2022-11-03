@@ -88,3 +88,68 @@ ll.insert(5, node= middle_node)
 print( str(ll) + "; ogona_wartosc=" + str(ll.tail.value))
 assert str(ll) == '0 -> 1 -> 5 -> 9 -> 10'
 
+class TreeNode():
+    def __init__(self,value):
+        self.value = value
+        self.children = []
+    def __str__(self):
+        str1 = str(self.value)+" "
+        for i in self.children:
+            str1 += ''+ str(i)+''
+        return str1
+    def add(self,child):
+        self.children.append(child)
+    def is_leaf(self):
+        if self.children == []:
+            return True
+        return False
+    def visit(self):
+        # wartosci_dzieci = []
+        # for i in self.children:
+        #     wartosci_dzieci.append(i.value)
+        return self.children
+    def deep_first_lvl3(self):
+        kolejka = []
+        kolejka.append(self.value)
+        if self.children != []:
+            for i in self.children:
+                kolejka.append(i.value)
+                for j in i.children:
+                    kolejka.append(j.value)
+                    for g in j.children:
+                        kolejka.append(g.value)
+        return kolejka
+    def deep_first(self):
+        if self.children != []:
+            print(self)
+            for i in self.visit():
+                i.deep_first()
+    def level_order(self):
+        if self.children != []:
+            print(self.value)
+            for i in self.children:
+                print(i.value)
+class Tree():
+    def __init__(self,TreeNode):
+        self.root = Treenode
+
+TN1 = TreeNode('F')
+TN2 = TreeNode('B')
+TN3 = TreeNode('G')
+TN4 = TreeNode('A')
+TN5 = TreeNode('D')
+TN6 = TreeNode('I')
+TN7 = TreeNode('H')
+TN8 = TreeNode('C')
+TN9 = TreeNode('E')
+TN1.add(TN2)
+TN1.add(TN3)
+TN2.add(TN4)
+TN2.add(TN5)
+TN5.add(TN8)
+TN5.add(TN9)
+TN3.add(TN6)
+TN6.add(TN7)
+# print(TN1.deep_first_lvl3())
+# TN1.deep_first()
+TN1.level_order()
